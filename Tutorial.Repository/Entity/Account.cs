@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Tutorial.Repository.Entity;
 
-public partial class Acsount
+public partial class Account
 {
     public Guid Id { get; set; }
 

@@ -20,7 +20,7 @@ namespace Tutorial.Services
 
         public async Task<CreateAccountRespone> CreateAccount(CreateAccountRequest request)
         {
-            var account = new Acsount {
+            var account = new Account {
              Id = Guid.NewGuid(),
              Username = request.UserName,             
              Password = request.Password,

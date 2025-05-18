@@ -7,7 +7,7 @@ using Tutorial.Repository.Entity;
 
 namespace Tutorial.Repository.Repository
 {
-    public class AccountRepository : GenericRepository<Acsount>
+    public class AccountRepository : GenericRepository<Account>
     {
 
     }
