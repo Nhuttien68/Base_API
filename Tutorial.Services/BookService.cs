@@ -48,6 +48,9 @@ namespace Tutorial.Services
              return response;
         }
 
-
+        public async Task<List<Book>> GetAllBooks()
+        {
+            return await _bookRepository.GetAllAsync();
+        }
     }
 }

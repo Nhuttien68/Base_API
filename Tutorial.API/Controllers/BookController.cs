@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tutorial.Repository.Entity;
 using Tutorial.Repository.Request;
 using Tutorial.Repository.Response;
 using Tutorial.Services;
@@ -22,10 +23,10 @@ namespace Tutorial.API.Controllers
             return await _bookService.CreateBook(request);
         }
 
-        //[HttpGet]
-        //public async Task<List<CreateBookResponse>> GetAllBooks()
-        //{
-        //    return await _bookService.GetAllBooks();
-        //}
+        [HttpGet]
+        public async Task<List<Book>> GetAllBooks()
+        {
+            return await _bookService.GetAllBooks();
+        }
     }
 }
