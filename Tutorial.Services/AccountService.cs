@@ -13,9 +13,9 @@ namespace Tutorial.Services
     public class AccountService : IAccountService
     {
         private AccountRepository _accountRepository;
-        public AccountService()
+        public AccountService( AccountRepository accountRepository)
         {
-            _accountRepository = new AccountRepository();
+            _accountRepository= accountRepository;
         }
 
         public async Task<CreateAccountRespone> CreateAccount(CreateAccountRequest request)
@@ -40,6 +40,25 @@ namespace Tutorial.Services
             };
 
             return response;
+        }
+
+        public  async Task<List<GetAccountResponse>> GetAllAccount()
+
+        {
+            var accounts = await _accountRepository.GetAllAsync();
+            List<GetAccountResponse> accountResponses = new List<GetAccountResponse>();
+             foreach (var account in accounts)
+            {
+                GetAccountResponse accountResponse = new GetAccountResponse
+                {
+                    Id = account.Id,
+                    UserName = account.Username,
+                    Email = account.Email,
+                    Active = account.Active
+                };
+                accountResponses.Add(accountResponse);
+            }
+                return accountResponses;
         }
     }
 }

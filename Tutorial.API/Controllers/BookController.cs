@@ -28,5 +28,15 @@ namespace Tutorial.API.Controllers
         {
             return await _bookService.GetAllBooks();
         }
+        [HttpGet("{id}")]
+        public async Task<Book> GetBookById(Guid id)
+        {
+            return await _bookService.GetBookById(id);
+        }
+        [HttpPut("{id}")]
+        public async Task<bool> UpdateBook(Guid id, CreateBookRequest request)
+        {
+            return await _bookService.UpdateBook(id, request);
+        }
     }
 }

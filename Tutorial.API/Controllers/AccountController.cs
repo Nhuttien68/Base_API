@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tutorial.Repository.Repository;
 using Tutorial.Repository.Request;
 using Tutorial.Repository.Response;
 using Tutorial.Services;
@@ -23,7 +24,11 @@ namespace Tutorial.API.Controllers
         {
             return  await _accountService.CreateAccount(request);  
         }
-
+        [HttpGet]
+        public async Task<List<GetAccountResponse>> GetAll()
+        {
+            return await _accountService.GetAllAccount();
+        }
 
 
     }

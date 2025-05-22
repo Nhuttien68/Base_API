@@ -1,3 +1,4 @@
+using Tutorial.Repository.Repository;
 using Tutorial.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<AccountRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

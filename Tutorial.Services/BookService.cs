@@ -52,5 +52,39 @@ namespace Tutorial.Services
         {
             return await _bookRepository.GetAllAsync();
         }
+
+        public async Task<Book> GetBookById(Guid id)
+        {
+            var book = await _bookRepository.GetByIdAsync(id);
+            if (book == null)
+            {
+                throw new KeyNotFoundException($"Book with ID {id} was not found.");
+            }
+            
+            return book;
+        }
+
+        public async Task<bool> UpdateBook(Guid id, CreateBookRequest request)
+        {
+            var book = await _bookRepository.GetByIdAsync(id);
+            if (book == null)
+            {
+                throw new KeyNotFoundException($"Book with ID {id} was not found.");
+            }
+
+            // Update the book properties
+            book.Title = request.Title;
+            book.Author = request.Author;
+            book.Publisher = request.Publisher;
+            book.PublishedDate = request.PublishedDate;
+            book.Isbn = request.Isbn;
+            book.Genre = request.Genre;
+            book.Price = request.Price;
+            book.Description = request.Description;
+
+            // Save the updated book
+            await _bookRepository.UpdateAsync(book);
+            return true;
+        }
     }
 }

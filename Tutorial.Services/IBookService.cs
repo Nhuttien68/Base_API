@@ -12,5 +12,8 @@ namespace Tutorial.Services
     {
         Task<CreateBookResponse> CreateBook(CreateBookRequest request);
         Task<List<Book>> GetAllBooks();
+         Task<Book> GetBookById(Guid id);
+        Task<bool> UpdateBook(Guid id, CreateBookRequest request);
+
     }
 }
