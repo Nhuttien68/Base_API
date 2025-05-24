@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Tutorial.Repository.Repository;
 using Tutorial.Repository.Request;
 using Tutorial.Repository.Response;
 using Tutorial.Services;

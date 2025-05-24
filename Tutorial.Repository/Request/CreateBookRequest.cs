@@ -8,7 +8,7 @@ namespace Tutorial.Repository.Request
 {
     public class CreateBookRequest
     {
-        public string Title { get; set; } = string.Empty;
+        public string? Title { get; set; } 
         public string Author { get; set; } = string.Empty;
         public string Publisher { get; set; } = string.Empty;
         public string Genre { get; set; } = string.Empty;
@@ -17,5 +17,6 @@ namespace Tutorial.Repository.Request
         public DateTime PublishedDate { get; set; }
         public int Price { get; set; } = 0;
 
+        public Guid BookCategoryId { get; set; } = Guid.Empty;  
     }
 }

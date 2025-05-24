@@ -47,18 +47,26 @@ namespace Tutorial.Services
         {
             var accounts = await _accountRepository.GetAllAsync();
             List<GetAccountResponse> accountResponses = new List<GetAccountResponse>();
-             foreach (var account in accounts)
+            // foreach (var account in accounts)
+            //{
+            //    GetAccountResponse accountResponse = new GetAccountResponse
+            //    {
+            //        Id = account.Id,
+            //        UserName = account.Username,
+            //        Email = account.Email,
+            //        Active = account.Active
+            //    };
+            //    accountResponses.Add(accountResponse);
+            //}
+            //    return accountResponses;
+            accountResponses = accounts.Select(account => new GetAccountResponse
             {
-                GetAccountResponse accountResponse = new GetAccountResponse
-                {
-                    Id = account.Id,
-                    UserName = account.Username,
-                    Email = account.Email,
-                    Active = account.Active
-                };
-                accountResponses.Add(accountResponse);
-            }
-                return accountResponses;
+                Id = account.Id,
+                UserName = account.Username,
+                Email = account.Email,
+                Active = account.Active
+            }).ToList();
+            return accountResponses;
         }
     }
 }

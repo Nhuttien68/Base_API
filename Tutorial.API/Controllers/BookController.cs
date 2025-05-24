@@ -38,5 +38,10 @@ namespace Tutorial.API.Controllers
         {
             return await _bookService.UpdateBook(id, request);
         }
+        [HttpDelete("{id}")]
+        public async Task<bool> DeleteBook([FromRoute]Guid id)
+        {
+            return await _bookService.DeleteBook(id);
+        }
     }
 }

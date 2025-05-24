@@ -15,5 +15,7 @@ namespace Tutorial.Services
          Task<Book> GetBookById(Guid id);
         Task<bool> UpdateBook(Guid id, CreateBookRequest request);
 
+        Task<bool> DeleteBook(Guid id);
+
     }
 }

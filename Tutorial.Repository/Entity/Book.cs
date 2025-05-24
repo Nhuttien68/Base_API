@@ -5,7 +5,7 @@ namespace Tutorial.Repository.Entity;
 
 public partial class Book
 {
-    public Guid Id { get; set; }
+    public Guid BookId { get; set; }
 
     public string Title { get; set; } = null!;
 
@@ -17,9 +17,13 @@ public partial class Book
 
     public string Isbn { get; set; } = null!;
 
-    public string Genre { get; set; } = null!;
-
     public int Price { get; set; }
 
     public string? Description { get; set; }
+
+    public Guid BookCategoryId { get; set; }
+
+    public bool Status { get; set; }
+
+    public virtual BookCategory BookCategory { get; set; } = null!;
 }

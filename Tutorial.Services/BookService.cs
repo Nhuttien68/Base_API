@@ -20,15 +20,17 @@ namespace Tutorial.Services
         }
         public async Task<CreateBookResponse> CreateBook(CreateBookRequest request)
         {
+
             var book = new Book
             {
-                Id = Guid.NewGuid(),
+                BookId = Guid.NewGuid(),
+                BookCategoryId = request.BookCategoryId,
+                Status = true,
                 Title = request.Title,
                 Author = request.Author,
                 Publisher = request.Publisher,
                 PublishedDate = request.PublishedDate,
                 Isbn = request.Isbn,
-                Genre = request.Genre,
                 Price = request.Price,
                 Description = request.Description
             };
@@ -36,16 +38,29 @@ namespace Tutorial.Services
 
             var response = new CreateBookResponse
             {
+                BookCategoryId = book.BookCategoryId,
                 Title = book.Title,
                 Author = book.Author,
                 Publisher = book.Publisher,
                 PublishedDate = book.PublishedDate,
                 Isbn = book.Isbn,
-                Genre = book.Genre,
                 Price = book.Price,
                 Description = book.Description
             };
              return response;
+        }
+
+        public async Task<bool> DeleteBook(Guid id)
+        {
+            var book = await _bookRepository.GetByIdAsync(id);
+
+            if (book == null)
+            {
+                return false; 
+            }
+            book.Status = false;
+             await _bookRepository.UpdateAsync(book);// dùng update!!!
+             return true; // Trả về true nếu xóa thành công
         }
 
         public async Task<List<Book>> GetAllBooks()
@@ -73,12 +88,11 @@ namespace Tutorial.Services
             }
 
             // Update the book properties
-            book.Title = request.Title;
+            book.Title = string.IsNullOrEmpty(request.Title) ? book.Title : request.Title;
             book.Author = request.Author;
             book.Publisher = request.Publisher;
             book.PublishedDate = request.PublishedDate;
             book.Isbn = request.Isbn;
-            book.Genre = request.Genre;
             book.Price = request.Price;
             book.Description = request.Description;
 
